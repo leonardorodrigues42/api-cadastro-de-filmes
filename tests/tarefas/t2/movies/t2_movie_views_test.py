@@ -136,11 +136,9 @@ class MovieViewsT2Test(APITestCase):
 
         # Criando movie 1
         movie_data = {"title": "Frozen", "duration": "102min"}
-        create_movie_with_employee(movie_data, employee)
-
+        movie = create_movie_with_employee(movie_data, employee)
         self.client.credentials(HTTP_AUTHORIZATION="Bearer " + str(token.access_token))
         response = self.client.delete(self.BASE_DETAIL_URL)
-
         expected_status_code = status.HTTP_204_NO_CONTENT
         result_status_code = response.status_code
         msg = (
